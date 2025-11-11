@@ -30,26 +30,31 @@ const reasons = [
 
 const WhyDotCom = () => {
   return (
-    <section className="py-20 bg-muted">
-      <div className="container px-4">
-        <h2 className="font-playfair font-bold text-4xl md:text-5xl text-center mb-4 text-primary">
-          Why .com Domains Command Premiums
-        </h2>
-        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto font-sans">
-          The gold standard of digital real estate
-        </p>
+    <section className="py-24 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted to-background" />
+      
+      <div className="container px-4 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="font-playfair font-bold text-5xl md:text-6xl mb-6 text-gradient-primary">
+            Why .com Domains Command Premiums
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-sans">
+            The gold standard of digital real estate
+          </p>
+        </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {reasons.map((reason, index) => (
             <div 
               key={index}
-              className="bg-card p-8 rounded-xl hover-lift shadow-lg border border-border animate-slide-up"
+              className="glass-morphism p-8 rounded-2xl hover-lift shadow-lg animate-slide-up group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <reason.icon className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-playfair font-bold text-xl mb-3 text-card-foreground">
+              <h3 className="font-playfair font-bold text-2xl mb-4 text-foreground">
                 {reason.title}
               </h3>
               <p className="text-muted-foreground font-sans leading-relaxed">

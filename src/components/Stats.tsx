@@ -28,36 +28,37 @@ const stats = [
 
 const Stats = () => {
   return (
-    <section className="py-20 bg-primary text-primary-foreground relative overflow-hidden">
-      {/* Decorative Background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gold rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
-      </div>
+    <section className="py-24 relative overflow-hidden">
+      {/* Background with gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-card via-background to-card" />
+      
+      {/* Decorative glow effects */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-30" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-30" />
       
       <div className="container px-4 relative z-10">
-        <h2 className="font-playfair font-bold text-4xl md:text-5xl text-center mb-4">
+        <h2 className="font-playfair font-bold text-5xl md:text-6xl text-center mb-6 text-gradient-gold">
           Stats on .com Success
         </h2>
-        <p className="text-center text-primary-foreground/80 mb-16 max-w-2xl mx-auto font-sans">
+        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto font-sans text-lg">
           The numbers speak for themselves
         </p>
         
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
           {stats.map((stat, index) => (
             <div 
               key={index}
               className="text-center animate-fade-in"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 hover-lift border border-primary-foreground/20">
-                <div className="font-playfair font-black text-5xl mb-2 text-gold">
+              <div className="glass-morphism rounded-2xl p-8 hover-lift border border-primary/20 group">
+                <div className="font-playfair font-black text-6xl mb-3 text-gradient-gold group-hover:scale-110 transition-transform inline-block">
                   {stat.metric}
                 </div>
-                <div className="font-sans font-semibold text-lg mb-2">
+                <div className="font-sans font-semibold text-xl mb-2 text-foreground">
                   {stat.label}
                 </div>
-                <div className="text-sm text-primary-foreground/70 font-sans">
+                <div className="text-sm text-muted-foreground font-sans">
                   {stat.detail}
                 </div>
               </div>
