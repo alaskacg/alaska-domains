@@ -2,77 +2,91 @@ import DomainCard from "./DomainCard";
 import { Search } from "lucide-react";
 
 const domains = [
-  // Tourism & Travel
-  { name: "AlaskaTours.com", price: "$25,000", category: "Tourism" },
-  { name: "AlaskaAdventure.com", price: "$18,000", category: "Tourism" },
-  { name: "AlaskaTravel.com", price: "$22,000", category: "Tourism" },
-  { name: "AlaskaCruise.com", price: "$20,000", category: "Tourism" },
-  { name: "AlaskaVacation.com", price: "$15,000", category: "Tourism" },
-  { name: "AlaskaTrip.com", price: "$12,000", category: "Tourism" },
+  // Mining & Exploration
+  { name: "akmines.com", price: "$45,000", category: "Mining" },
+  { name: "akminingcompany.com", price: "$38,000", category: "Mining" },
+  { name: "akmininggroup.com", price: "$42,000", category: "Mining" },
+  { name: "akminingequipment.com", price: "$28,000", category: "Mining" },
+  { name: "alaskamininggroup.com", price: "$48,000", category: "Mining" },
+  { name: "alaskaminingequipment.com", price: "$32,000", category: "Mining" },
+  { name: "alcanminingcompany.com", price: "$35,000", category: "Mining" },
+  { name: "amblermines.com", price: "$32,000", category: "Mining" },
+  { name: "amblerminingcompany.com", price: "$30,000", category: "Mining" },
+  { name: "bethelminingcompany.com", price: "$28,000", category: "Mining" },
   
-  // Outdoor & Adventure
-  { name: "AlaskaFishing.com", price: "$28,000", category: "Outdoor" },
-  { name: "AlaskaHunting.com", price: "$16,000", category: "Outdoor" },
-  { name: "AlaskaWildlife.com", price: "$19,000", category: "Outdoor" },
-  { name: "AlaskaHiking.com", price: "$14,000", category: "Outdoor" },
-  { name: "AlaskaCamping.com", price: "$13,000", category: "Outdoor" },
-  { name: "AlaskaKayaking.com", price: "$11,000", category: "Outdoor" },
+  // Exploration & Survey
+  { name: "akexploration.com", price: "$36,000", category: "Exploration" },
+  { name: "akexploratory.com", price: "$28,000", category: "Exploration" },
+  { name: "akmineralexploration.com", price: "$32,000", category: "Exploration" },
+  { name: "alaskamineralexploration.com", price: "$38,000", category: "Exploration" },
+  { name: "alaskaexplorationllc.com", price: "$35,000", category: "Exploration" },
+  { name: "akdronesurvey.com", price: "$24,000", category: "Exploration" },
+  { name: "alaskadronesurvey.com", price: "$28,000", category: "Exploration" },
   
-  // Hospitality
-  { name: "AlaskaLodge.com", price: "$24,000", category: "Hospitality" },
-  { name: "AlaskaResort.com", price: "$21,000", category: "Hospitality" },
-  { name: "AlaskaHotels.com", price: "$17,000", category: "Hospitality" },
-  { name: "AlaskaCabin.com", price: "$15,000", category: "Hospitality" },
-  { name: "AlaskaBed.com", price: "$9,000", category: "Hospitality" },
+  // Gold & Resources
+  { name: "akgolddirect.com", price: "$42,000", category: "Gold" },
+  { name: "akgoldexchange.com", price: "$45,000", category: "Gold" },
+  { name: "akgoldgroup.com", price: "$48,000", category: "Gold" },
+  { name: "akgoldnews.com", price: "$32,000", category: "Gold" },
+  { name: "alaskagolddirect.com", price: "$52,000", category: "Gold" },
+  { name: "alaskagoldgroup.com", price: "$55,000", category: "Gold" },
+  { name: "alaskagoldnews.com", price: "$38,000", category: "Gold" },
   
-  // Real Estate & Property
-  { name: "AlaskaReal.com", price: "$26,000", category: "Real Estate" },
-  { name: "AlaskaHomes.com", price: "$23,000", category: "Real Estate" },
-  { name: "AlaskaProperty.com", price: "$20,000", category: "Real Estate" },
-  { name: "AlaskaLand.com", price: "$22,000", category: "Real Estate" },
-  { name: "AlaskaRealty.com", price: "$18,000", category: "Real Estate" },
-  { name: "AlaskaEstates.com", price: "$16,000", category: "Real Estate" },
+  // Oil & Gas
+  { name: "akoilcompany.com", price: "$48,000", category: "Oil & Gas" },
+  { name: "alaskaoilcompany.com", price: "$58,000", category: "Oil & Gas" },
+  { name: "alaskaoilandgascompany.com", price: "$52,000", category: "Oil & Gas" },
   
-  // Business & Commerce
-  { name: "AlaskaGold.com", price: "$35,000", category: "Business" },
-  { name: "AlaskaBusiness.com", price: "$19,000", category: "Business" },
-  { name: "AlaskaShop.com", price: "$14,000", category: "Business" },
-  { name: "AlaskaMarket.com", price: "$13,000", category: "Business" },
-  { name: "AlaskaStore.com", price: "$12,000", category: "Business" },
+  // Real Estate & Listings
+  { name: "aklistings.com", price: "$38,000", category: "Real Estate" },
+  { name: "kenailistings.com", price: "$28,000", category: "Real Estate" },
+  { name: "kenailandsales.com", price: "$24,000", category: "Real Estate" },
+  { name: "kenaihomesales.com", price: "$26,000", category: "Real Estate" },
+  { name: "kenaihomesforsale.com", price: "$24,000", category: "Real Estate" },
+  { name: "kenaiboroughrealty.com", price: "$22,000", category: "Real Estate" },
+  { name: "kenaiborough.com", price: "$32,000", category: "Real Estate" },
+  { name: "chugachlistings.com", price: "$22,000", category: "Real Estate" },
+  { name: "tongasslistings.com", price: "$22,000", category: "Real Estate" },
+  { name: "alcanlistings.com", price: "$24,000", category: "Real Estate" },
   
-  // Transportation
-  { name: "AlaskaAir.com", price: "$30,000", category: "Transportation" },
-  { name: "AlaskaFlights.com", price: "$17,000", category: "Transportation" },
-  { name: "AlaskaRentals.com", price: "$15,000", category: "Transportation" },
-  { name: "AlaskaCars.com", price: "$13,000", category: "Transportation" },
+  // Guide Services
+  { name: "akguidelistings.com", price: "$26,000", category: "Guide Services" },
+  { name: "akguidesearch.com", price: "$28,000", category: "Guide Services" },
+  { name: "akguideservices.com", price: "$32,000", category: "Guide Services" },
+  { name: "alaskaguidelistings.com", price: "$32,000", category: "Guide Services" },
   
-  // Food & Dining
-  { name: "AlaskaSeafood.com", price: "$21,000", category: "Food & Dining" },
-  { name: "AlaskaSalmon.com", price: "$18,000", category: "Food & Dining" },
-  { name: "AlaskaRestaurants.com", price: "$14,000", category: "Food & Dining" },
-  { name: "AlaskaCrab.com", price: "$16,000", category: "Food & Dining" },
+  // News & Media
+  { name: "kenainews.com", price: "$28,000", category: "News" },
+  { name: "chugachnews.com", price: "$24,000", category: "News" },
+  { name: "tongassnews.com", price: "$24,000", category: "News" },
+  { name: "alaskanewscorporation.com", price: "$42,000", category: "News" },
+  { name: "mavericknewsagency.com", price: "$38,000", category: "News" },
+  { name: "maverickworldnews.com", price: "$45,000", category: "News" },
+  { name: "mavnewsagency.com", price: "$32,000", category: "News" },
   
-  // Nature & Environment
-  { name: "AlaskaNature.com", price: "$17,000", category: "Nature" },
-  { name: "AlaskaGlacier.com", price: "$19,000", category: "Nature" },
-  { name: "AlaskaMountain.com", price: "$15,000", category: "Nature" },
-  { name: "AlaskaRiver.com", price: "$12,000", category: "Nature" },
+  // Foundations & Organizations
+  { name: "chugachfoundation.com", price: "$35,000", category: "Foundation" },
+  { name: "greatstatefoundation.com", price: "$38,000", category: "Foundation" },
+  { name: "thealaskafoundation.com", price: "$48,000", category: "Foundation" },
+  { name: "thealaskantrust.com", price: "$42,000", category: "Foundation" },
+  { name: "tongassfoundation.com", price: "$32,000", category: "Foundation" },
   
-  // Culture & Information
-  { name: "AlaskaGuide.com", price: "$20,000", category: "Information" },
-  { name: "AlaskaNews.com", price: "$18,000", category: "Information" },
-  { name: "AlaskaInfo.com", price: "$14,000", category: "Information" },
-  { name: "AlaskaBlog.com", price: "$10,000", category: "Information" },
+  // Retail & Commerce
+  { name: "alaskasstore.com", price: "$28,000", category: "Retail" },
+  { name: "kenaiautosales.com", price: "$26,000", category: "Automotive" },
+  { name: "kenaipeninsularentals.com", price: "$22,000", category: "Rentals" },
   
-  // Services
-  { name: "AlaskaPhotography.com", price: "$13,000", category: "Services" },
-  { name: "AlaskaWedding.com", price: "$15,000", category: "Services" },
-  { name: "AlaskaEvents.com", price: "$12,000", category: "Services" },
+  // Maritime
+  { name: "alaskanboats.com", price: "$32,000", category: "Maritime" },
   
-  // Premium Generic
-  { name: "AlaskaOnline.com", price: "$16,000", category: "Premium" },
-  { name: "AlaskaLife.com", price: "$19,000", category: "Premium" },
-  { name: "AlaskaDirect.com", price: "$14,000", category: "Premium" },
+  // Emergency Services
+  { name: "akfires.com", price: "$35,000", category: "Emergency" },
+  { name: "alaskafires.com", price: "$42,000", category: "Emergency" },
+  
+  // General Alaska
+  { name: "akdigs.com", price: "$28,000", category: "General" },
+  { name: "alaskadigs.com", price: "$32,000", category: "General" },
+  { name: "alaskadomains.com", price: "$65,000", category: "Premium" },
 ];
 
 const Domains = () => {
