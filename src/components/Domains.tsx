@@ -23,26 +23,10 @@ const domains = [
   { name: "alaskaoilcompany.com", price: "$58,000", category: "Oil & Gas" },
   { name: "alaskaoilandgascompany.com", price: "$52,000", category: "Oil & Gas" },
   
-  // Real Estate & Listings
-  { name: "aklistings.com", price: "$38,000", category: "Real Estate" },
-  { name: "kenailistings.com", price: "$28,000", category: "Real Estate" },
-  { name: "kenailandsales.com", price: "$24,000", category: "Real Estate" },
+  // Real Estate
   { name: "kenaihomesales.com", price: "$26,000", category: "Real Estate" },
-  { name: "kenaihomesforsale.com", price: "$24,000", category: "Real Estate" },
   { name: "kenaiboroughrealty.com", price: "$22,000", category: "Real Estate" },
   { name: "kenaiborough.com", price: "$32,000", category: "Real Estate" },
-  { name: "chugachlistings.com", price: "$22,000", category: "Real Estate" },
-  { name: "tongasslistings.com", price: "$22,000", category: "Real Estate" },
-  { name: "alcanlistings.com", price: "$24,000", category: "Real Estate" },
-  
-  // News & Media
-  { name: "kenainews.com", price: "$28,000", category: "News" },
-  { name: "chugachnews.com", price: "$24,000", category: "News" },
-  { name: "tongassnews.com", price: "$24,000", category: "News" },
-  { name: "alaskanewscorporation.com", price: "$42,000", category: "News" },
-  { name: "mavericknewsagency.com", price: "$38,000", category: "News" },
-  { name: "maverickworldnews.com", price: "$45,000", category: "News" },
-  { name: "mavnewsagency.com", price: "$32,000", category: "News" },
   
   // Foundations & Organizations
   { name: "greatstatefoundation.com", price: "$38,000", category: "Foundation" },
@@ -50,10 +34,6 @@ const domains = [
   // Retail & Commerce
   { name: "alaskasstore.com", price: "$28,000", category: "Retail" },
   { name: "kenaiautosales.com", price: "$26,000", category: "Automotive" },
-  { name: "kenaipeninsularentals.com", price: "$22,000", category: "Rentals" },
-  
-  // Premium
-  { name: "alaskadomains.com", price: "$65,000", category: "Premium" },
 ];
 
 // Group domains by category
@@ -90,7 +70,7 @@ const Domains = () => {
             <span className="text-foreground font-sans font-medium">Premium Portfolio</span>
           </div>
           
-          <h2 className="font-playfair font-bold text-5xl md:text-6xl mb-6 text-gradient-primary">
+          <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-6 text-gradient-primary animate-fade-in">
             Our Premium Domain Collection
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto font-sans text-lg leading-relaxed">
