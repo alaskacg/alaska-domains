@@ -7,12 +7,8 @@ const domains = [
   { name: "akmines.com", price: "$45,000", category: "Mining" },
   { name: "akminingcompany.com", price: "$38,000", category: "Mining" },
   { name: "akmininggroup.com", price: "$42,000", category: "Mining" },
-  { name: "akminingequipment.com", price: "$28,000", category: "Mining" },
   { name: "alaskamininggroup.com", price: "$48,000", category: "Mining" },
-  { name: "alaskaminingequipment.com", price: "$32,000", category: "Mining" },
-  { name: "alcanminingcompany.com", price: "$35,000", category: "Mining" },
   { name: "amblermines.com", price: "$32,000", category: "Mining" },
-  { name: "amblerminingcompany.com", price: "$30,000", category: "Mining" },
   { name: "bethelminingcompany.com", price: "$28,000", category: "Mining" },
   
   // Exploration & Survey
@@ -21,17 +17,6 @@ const domains = [
   { name: "akmineralexploration.com", price: "$32,000", category: "Exploration" },
   { name: "alaskamineralexploration.com", price: "$38,000", category: "Exploration" },
   { name: "alaskaexplorationllc.com", price: "$35,000", category: "Exploration" },
-  { name: "akdronesurvey.com", price: "$24,000", category: "Exploration" },
-  { name: "alaskadronesurvey.com", price: "$28,000", category: "Exploration" },
-  
-  // Gold & Resources
-  { name: "akgolddirect.com", price: "$42,000", category: "Gold" },
-  { name: "akgoldexchange.com", price: "$45,000", category: "Gold" },
-  { name: "akgoldgroup.com", price: "$48,000", category: "Gold" },
-  { name: "akgoldnews.com", price: "$32,000", category: "Gold" },
-  { name: "alaskagolddirect.com", price: "$52,000", category: "Gold" },
-  { name: "alaskagoldgroup.com", price: "$55,000", category: "Gold" },
-  { name: "alaskagoldnews.com", price: "$38,000", category: "Gold" },
   
   // Oil & Gas
   { name: "akoilcompany.com", price: "$48,000", category: "Oil & Gas" },
@@ -50,12 +35,6 @@ const domains = [
   { name: "tongasslistings.com", price: "$22,000", category: "Real Estate" },
   { name: "alcanlistings.com", price: "$24,000", category: "Real Estate" },
   
-  // Guide Services
-  { name: "akguidelistings.com", price: "$26,000", category: "Guide Services" },
-  { name: "akguidesearch.com", price: "$28,000", category: "Guide Services" },
-  { name: "akguideservices.com", price: "$32,000", category: "Guide Services" },
-  { name: "alaskaguidelistings.com", price: "$32,000", category: "Guide Services" },
-  
   // News & Media
   { name: "kenainews.com", price: "$28,000", category: "News" },
   { name: "chugachnews.com", price: "$24,000", category: "News" },
@@ -66,27 +45,14 @@ const domains = [
   { name: "mavnewsagency.com", price: "$32,000", category: "News" },
   
   // Foundations & Organizations
-  { name: "chugachfoundation.com", price: "$35,000", category: "Foundation" },
   { name: "greatstatefoundation.com", price: "$38,000", category: "Foundation" },
-  { name: "thealaskafoundation.com", price: "$48,000", category: "Foundation" },
-  { name: "thealaskantrust.com", price: "$42,000", category: "Foundation" },
-  { name: "tongassfoundation.com", price: "$32,000", category: "Foundation" },
   
   // Retail & Commerce
   { name: "alaskasstore.com", price: "$28,000", category: "Retail" },
   { name: "kenaiautosales.com", price: "$26,000", category: "Automotive" },
   { name: "kenaipeninsularentals.com", price: "$22,000", category: "Rentals" },
   
-  // Maritime
-  { name: "alaskanboats.com", price: "$32,000", category: "Maritime" },
-  
-  // Emergency Services
-  { name: "akfires.com", price: "$35,000", category: "Emergency" },
-  { name: "alaskafires.com", price: "$42,000", category: "Emergency" },
-  
-  // General Alaska
-  { name: "akdigs.com", price: "$28,000", category: "General" },
-  { name: "alaskadigs.com", price: "$32,000", category: "General" },
+  // Premium
   { name: "alaskadomains.com", price: "$65,000", category: "Premium" },
 ];
 
