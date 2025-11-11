@@ -81,9 +81,9 @@ const Domains = () => {
         
         {/* Domain Count */}
         <div className="text-center mb-12">
-          <div className="inline-block glass-morphism px-8 py-4 rounded-2xl border border-gold/20">
-            <span className="text-4xl font-bold text-gradient-gold font-playfair">{domains.length}</span>
-            <span className="text-muted-foreground ml-3 font-sans">Premium Domains Available</span>
+          <div className="inline-block glass-morphism px-8 py-4 rounded-2xl border border-luxury/20">
+            <span className="text-4xl font-bold text-gradient-luxury font-playfair">{domains.length}</span>
+            <span className="text-light-gray ml-3 font-sans">Premium Domains Available</span>
           </div>
         </div>
 
@@ -126,7 +126,7 @@ const Domains = () => {
               {/* Category Header */}
               <div className="text-center mb-10">
                 <div className="inline-block glass-morphism px-8 py-3 rounded-full border border-primary/20 mb-4">
-                  <h3 className="font-playfair font-bold text-3xl text-gradient-gold">
+                  <h3 className="font-playfair font-bold text-3xl text-gradient-luxury">
                     {category}
                   </h3>
                 </div>

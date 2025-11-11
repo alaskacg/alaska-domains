@@ -51,6 +51,14 @@ export default {
           DEFAULT: "hsl(var(--gold))",
           foreground: "hsl(var(--gold-foreground))",
         },
+        luxury: {
+          DEFAULT: "hsl(var(--luxury))",
+          foreground: "hsl(var(--luxury-foreground))",
+        },
+        "light-gray": {
+          DEFAULT: "hsl(var(--light-gray))",
+          foreground: "hsl(var(--light-gray-foreground))",
+        },
         earth: {
           DEFAULT: "hsl(var(--earth))",
           foreground: "hsl(var(--earth-foreground))",

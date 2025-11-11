@@ -38,9 +38,13 @@ All colors MUST be HSL.
     --destructive: 0 85% 55%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Gold luxury highlights */
-    --gold: 45 85% 50%;
-    --gold-foreground: 200 15% 8%;
+    /* Dark red luxury highlights */
+    --luxury: 0 70% 40%;
+    --luxury-foreground: 0 0% 95%;
+    
+    /* Light gray */
+    --light-gray: 0 0% 75%;
+    --light-gray-foreground: 200 15% 8%;
     
     /* Earth brown */
     --earth: 30 40% 30%;
@@ -52,18 +56,18 @@ All colors MUST be HSL.
     
     --border: 200 15% 20%;
     --input: 200 15% 20%;
-    --ring: 45 85% 50%;
+    --ring: 150 60% 45%;
     
     --radius: 0.75rem;
     
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(150 60% 25%), hsl(200 90% 30%));
-    --gradient-gold: linear-gradient(135deg, hsl(45 85% 50%), hsl(42 80% 55%));
+    --gradient-luxury: linear-gradient(135deg, hsl(0 70% 40%), hsl(0 60% 50%));
     --gradient-earth: linear-gradient(180deg, hsl(30 40% 20%), hsl(150 60% 15%));
     --gradient-card: linear-gradient(135deg, hsl(200 15% 12%), hsl(200 15% 18%));
     
     /* Shadows */
-    --shadow-luxury: 0 25px 80px -20px hsl(45 85% 50% / 0.4);
+    --shadow-luxury: 0 25px 80px -20px hsl(0 70% 40% / 0.4);
     --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
     --shadow-glow: 0 0 60px hsl(150 60% 45% / 0.3);
     
@@ -88,8 +92,8 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  .text-gradient-gold {
-    background: var(--gradient-gold);
+  .text-gradient-luxury {
+    background: var(--gradient-luxury);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
