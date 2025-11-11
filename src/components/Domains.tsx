@@ -1,5 +1,6 @@
 import DomainCard from "./DomainCard";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const domains = [
   // Mining & Exploration
@@ -89,7 +90,28 @@ const domains = [
   { name: "alaskadomains.com", price: "$65,000", category: "Premium" },
 ];
 
+// Group domains by category
+const groupedDomains = domains.reduce((acc, domain) => {
+  if (!acc[domain.category]) {
+    acc[domain.category] = [];
+  }
+  acc[domain.category].push(domain);
+  return acc;
+}, {} as Record<string, typeof domains>);
+
+const categories = Object.keys(groupedDomains).sort();
+
 const Domains = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const scrollToCategory = (category: string) => {
+    const element = document.getElementById(`category-${category}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setIsDropdownOpen(false);
+    }
+  };
+
   return (
     <section id="domains" className="py-24 relative overflow-hidden">
       {/* Background */}
@@ -118,21 +140,73 @@ const Domains = () => {
             <span className="text-muted-foreground ml-3 font-sans">Premium Domains Available</span>
           </div>
         </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {domains.map((domain, index) => (
-            <div 
-              key={domain.name}
-              className="animate-slide-up"
-              style={{ animationDelay: `${(index % 20) * 30}ms` }}
+
+        {/* Category Navigation Dropdown */}
+        <div className="flex justify-center mb-12">
+          <div className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="glass-morphism px-6 py-4 rounded-xl border border-primary/20 flex items-center gap-3 hover-lift font-sans font-medium text-foreground min-w-[280px] justify-between"
             >
-              <DomainCard {...domain} />
+              <span>Jump to Category</span>
+              <ChevronDown className={`w-5 h-5 text-primary transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {isDropdownOpen && (
+              <div className="absolute top-full mt-2 w-full bg-background border border-primary/20 rounded-xl shadow-2xl overflow-hidden z-50 animate-fade-in">
+                <div className="max-h-[400px] overflow-y-auto">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => scrollToCategory(category)}
+                      className="w-full px-6 py-3 text-left hover:bg-primary/10 transition-colors font-sans text-foreground border-b border-border/10 last:border-b-0"
+                    >
+                      <span className="font-medium">{category}</span>
+                      <span className="text-muted-foreground ml-2 text-sm">
+                        ({groupedDomains[category].length})
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Domains by Category */}
+        <div className="space-y-20 max-w-7xl mx-auto">
+          {categories.map((category) => (
+            <div key={category} id={`category-${category}`} className="scroll-mt-24">
+              {/* Category Header */}
+              <div className="text-center mb-10">
+                <div className="inline-block glass-morphism px-8 py-3 rounded-full border border-primary/20 mb-4">
+                  <h3 className="font-playfair font-bold text-3xl text-gradient-gold">
+                    {category}
+                  </h3>
+                </div>
+                <p className="text-muted-foreground font-sans">
+                  {groupedDomains[category].length} premium domain{groupedDomains[category].length > 1 ? 's' : ''} available
+                </p>
+              </div>
+
+              {/* Category Domains Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {groupedDomains[category].map((domain, index) => (
+                  <div 
+                    key={domain.name}
+                    className="animate-slide-up"
+                    style={{ animationDelay: `${(index % 20) * 30}ms` }}
+                  >
+                    <DomainCard {...domain} />
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
         
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-20">
           <div className="glass-morphism p-8 rounded-2xl max-w-2xl mx-auto border border-primary/20">
             <h3 className="font-playfair font-bold text-2xl mb-4 text-foreground">
               Don't see what you're looking for?
