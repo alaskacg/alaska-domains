@@ -52,7 +52,7 @@ All colors MUST be HSL.
     
     --border: 200 15% 20%;
     --input: 200 15% 20%;
-    --ring: 45 100% 55%;
+    --ring: 38 90% 45%;
     
     --radius: 0.75rem;
     
@@ -63,7 +63,7 @@ All colors MUST be HSL.
     --gradient-card: linear-gradient(135deg, hsl(200 15% 12%), hsl(200 15% 18%));
     
     /* Shadows */
-    --shadow-luxury: 0 25px 80px -20px hsl(45 100% 55% / 0.4);
+    --shadow-luxury: 0 25px 80px -20px hsl(38 90% 45% / 0.4);
     --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
     --shadow-glow: 0 0 60px hsl(150 60% 45% / 0.3);
     
