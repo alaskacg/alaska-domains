@@ -245,23 +245,6 @@ const Domains = () => {
           </div>
         )}
         
-        {/* CTA Section */}
-        <div className="text-center mt-20">
-          <div className="glass-morphism p-8 rounded-2xl max-w-2xl mx-auto border border-primary/20">
-            <h3 className="font-playfair font-bold text-xl mb-4 text-foreground">
-              Don't see what you're looking for?
-            </h3>
-            <p className="text-muted-foreground mb-6 font-sans text-sm">
-              We have access to additional premium Alaska domains. Contact us for custom inquiries.
-            </p>
-            <a 
-              href="mailto:support@alaskadomains.com" 
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-xl font-semibold hover-lift shadow-2xl font-sans"
-            >
-              Contact for Custom Domains
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
