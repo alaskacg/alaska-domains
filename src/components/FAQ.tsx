@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "What payment methods do you accept?",
-    answer: "We accept wire transfers, ACH, and escrow services like Escrow.com. For qualified buyers, we can also arrange payment plans on domains over $30,000."
+    answer: "We accept credit card payments (Visa, Mastercard, American Express), wire transfers, ACH, and escrow services like Escrow.com. For qualified buyers, we can also arrange payment plans on domains over $30,000."
   },
   {
     question: "Can I lease or finance a domain?",
