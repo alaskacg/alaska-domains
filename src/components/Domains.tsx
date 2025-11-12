@@ -1,6 +1,8 @@
 import DomainCard from "./DomainCard";
-import { Search, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { Search, ChevronDown, SlidersHorizontal } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const domains = [
   // Mining & Exploration
@@ -45,6 +47,39 @@ const categories = Object.keys(groupedDomains).sort();
 
 const Domains = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [priceFilter, setPriceFilter] = useState<string>("all");
+
+  // Filter domains
+  const filteredDomains = useMemo(() => {
+    return domains.filter(domain => {
+      const matchesSearch = domain.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           domain.category.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const price = parseInt(domain.price.replace(/[$,]/g, ''));
+      let matchesPrice = true;
+      
+      if (priceFilter === "under30k") matchesPrice = price < 30000;
+      else if (priceFilter === "30k-40k") matchesPrice = price >= 30000 && price < 40000;
+      else if (priceFilter === "40k-50k") matchesPrice = price >= 40000 && price < 50000;
+      else if (priceFilter === "over50k") matchesPrice = price >= 50000;
+      
+      return matchesSearch && matchesPrice;
+    });
+  }, [searchQuery, priceFilter]);
+
+  // Group filtered domains by category
+  const filteredGroupedDomains = useMemo(() => {
+    return filteredDomains.reduce((acc, domain) => {
+      if (!acc[domain.category]) {
+        acc[domain.category] = [];
+      }
+      acc[domain.category].push(domain);
+      return acc;
+    }, {} as Record<string, typeof domains>);
+  }, [filteredDomains]);
+
+  const filteredCategories = Object.keys(filteredGroupedDomains).sort();
 
   const scrollToCategory = (category: string) => {
     const element = document.getElementById(`category-${category}`);
@@ -75,11 +110,49 @@ const Domains = () => {
           </p>
         </div>
         
-        {/* Domain Count */}
-        <div className="text-center mb-12">
-          <div className="inline-block glass-morphism px-8 py-4 rounded-2xl border border-luxury/20">
-            <span className="text-3xl font-bold text-gradient-luxury font-playfair">{domains.length}</span>
-            <span className="text-light-gray ml-3 font-sans">Premium Domains Available</span>
+        {/* Search and Filter */}
+        <div className="max-w-4xl mx-auto mb-12 space-y-4">
+          <div className="glass-morphism p-6 rounded-2xl border border-primary/20">
+            <div className="flex items-center gap-3 mb-4">
+              <SlidersHorizontal className="w-5 h-5 text-primary" />
+              <h3 className="font-sans font-semibold text-sm text-foreground">Filter Domains</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <Input
+                  placeholder="Search domains or categories..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-background/50"
+                />
+              </div>
+              
+              <div>
+                <Select value={priceFilter} onValueChange={setPriceFilter}>
+                  <SelectTrigger className="bg-background/50">
+                    <SelectValue placeholder="Filter by price" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Prices</SelectItem>
+                    <SelectItem value="under30k">Under $30,000</SelectItem>
+                    <SelectItem value="30k-40k">$30,000 - $40,000</SelectItem>
+                    <SelectItem value="40k-50k">$40,000 - $50,000</SelectItem>
+                    <SelectItem value="over50k">Over $50,000</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+
+          {/* Results Count */}
+          <div className="text-center">
+            <div className="inline-block glass-morphism px-8 py-4 rounded-2xl border border-luxury/20">
+              <span className="text-3xl font-bold text-gradient-luxury font-playfair">{filteredDomains.length}</span>
+              <span className="text-light-gray ml-3 font-sans">
+                {filteredDomains.length === domains.length ? 'Premium Domains Available' : 'Matching Domains'}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -94,10 +167,10 @@ const Domains = () => {
               <ChevronDown className={`w-5 h-5 text-primary transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
             
-            {isDropdownOpen && (
+            {isDropdownOpen && filteredCategories.length > 0 && (
               <div className="absolute top-full mt-2 w-full bg-background border border-primary/20 rounded-xl shadow-2xl overflow-hidden z-50 animate-fade-in">
                 <div className="max-h-[400px] overflow-y-auto">
-                  {categories.map((category) => (
+                  {filteredCategories.map((category) => (
                     <button
                       key={category}
                       onClick={() => scrollToCategory(category)}
@@ -105,7 +178,7 @@ const Domains = () => {
                     >
                       <span className="font-medium">{category}</span>
                       <span className="text-muted-foreground ml-2 text-sm">
-                        ({groupedDomains[category].length})
+                        ({filteredGroupedDomains[category].length})
                       </span>
                     </button>
                   ))}
@@ -116,36 +189,44 @@ const Domains = () => {
         </div>
         
         {/* Domains by Category */}
-        <div className="space-y-20 max-w-7xl mx-auto">
-          {categories.map((category) => (
-            <div key={category} id={`category-${category}`} className="scroll-mt-24">
-              {/* Category Header */}
-              <div className="text-center mb-10">
-                <div className="inline-block glass-morphism px-8 py-3 rounded-full border border-primary/20 mb-4">
-                  <h3 className="font-playfair font-bold text-2xl text-gradient-luxury">
-                    {category}
-                  </h3>
-                </div>
-                <p className="text-muted-foreground font-sans">
-                  {groupedDomains[category].length} premium domain{groupedDomains[category].length > 1 ? 's' : ''} available
-                </p>
-              </div>
-
-              {/* Category Domains Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {groupedDomains[category].map((domain, index) => (
-                  <div 
-                    key={domain.name}
-                    className="animate-slide-up"
-                    style={{ animationDelay: `${(index % 20) * 30}ms` }}
-                  >
-                    <DomainCard {...domain} />
+        {filteredCategories.length > 0 ? (
+          <div className="space-y-20 max-w-7xl mx-auto">
+            {filteredCategories.map((category) => (
+              <div key={category} id={`category-${category}`} className="scroll-mt-24">
+                {/* Category Header */}
+                <div className="text-center mb-10">
+                  <div className="inline-block glass-morphism px-8 py-3 rounded-full border border-primary/20 mb-4">
+                    <h3 className="font-playfair font-bold text-2xl text-gradient-luxury">
+                      {category}
+                    </h3>
                   </div>
-                ))}
+                  <p className="text-muted-foreground font-sans">
+                    {filteredGroupedDomains[category].length} premium domain{filteredGroupedDomains[category].length > 1 ? 's' : ''} available
+                  </p>
+                </div>
+
+                {/* Category Domains Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredGroupedDomains[category].map((domain, index) => (
+                    <div 
+                      key={domain.name}
+                      className="animate-slide-up"
+                      style={{ animationDelay: `${(index % 20) * 30}ms` }}
+                    >
+                      <DomainCard {...domain} />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-muted-foreground font-sans text-sm">
+              No domains match your search criteria. Try adjusting your filters.
+            </p>
+          </div>
+        )}
         
         {/* CTA Section */}
         <div className="text-center mt-20">

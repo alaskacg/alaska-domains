@@ -1,4 +1,6 @@
 import { Mail, TrendingUp } from "lucide-react";
+import { useState } from "react";
+import InquiryForm from "./InquiryForm";
 
 interface DomainCardProps {
   name: string;
@@ -7,6 +9,7 @@ interface DomainCardProps {
 }
 
 const DomainCard = ({ name, price, category }: DomainCardProps) => {
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   return (
     <div className="glass-morphism rounded-2xl p-6 hover-lift border border-primary/20 group relative overflow-hidden">
       {/* Shimmer Effect */}
@@ -28,14 +31,21 @@ const DomainCard = ({ name, price, category }: DomainCardProps) => {
           <span className="text-foreground text-lg font-sans font-bold">{price}</span>
         </div>
         
-        <a 
-          href={`mailto:support@alaskadomains.com?subject=Inquiry about ${name}`}
+        <button 
+          onClick={() => setIsInquiryOpen(true)}
           className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-transform shadow-lg font-sans w-full justify-center group-hover:shadow-primary/50"
         >
           <Mail className="w-4 h-4" />
           Inquire Now
-        </a>
+        </button>
       </div>
+
+      <InquiryForm 
+        open={isInquiryOpen}
+        onOpenChange={setIsInquiryOpen}
+        domainName={name}
+        domainPrice={price}
+      />
     </div>
   );
 };
