@@ -35,12 +35,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <button 
-            onClick={() => scrollToSection('hero')}
-            className="font-playfair font-bold text-lg text-gradient-luxury"
-          >
-            Alaska Domains
-          </button>
+          <div className="w-8" />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
