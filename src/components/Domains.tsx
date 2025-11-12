@@ -6,7 +6,6 @@ const domains = [
   // Mining & Exploration
   { name: "akmines.com", price: "$45,000", category: "Mining" },
   { name: "akminingcompany.com", price: "$38,000", category: "Mining" },
-  { name: "akmininggroup.com", price: "$42,000", category: "Mining" },
   { name: "amblermines.com", price: "$32,000", category: "Mining" },
   { name: "bethelminingcompany.com", price: "$28,000", category: "Mining" },
   
