@@ -37,10 +37,10 @@ const Stats = () => {
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-30" />
       
       <div className="container px-4 relative z-10">
-        <h2 className="font-playfair font-bold text-5xl md:text-6xl text-center mb-6 text-gradient-gold">
+        <h2 className="font-playfair font-bold text-4xl md:text-5xl text-center mb-6 text-gradient-gold">
           Stats on .com Success
         </h2>
-        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto font-sans text-lg">
+        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto font-sans text-base">
           The numbers speak for themselves
         </p>
         
@@ -52,10 +52,10 @@ const Stats = () => {
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="glass-morphism rounded-2xl p-8 hover-lift border border-primary/20 group">
-                <div className="font-playfair font-black text-6xl mb-3 text-gradient-gold group-hover:scale-110 transition-transform inline-block">
+                <div className="font-playfair font-black text-5xl mb-3 text-gradient-gold group-hover:scale-110 transition-transform inline-block">
                   {stat.metric}
                 </div>
-                <div className="font-sans font-semibold text-xl mb-2 text-foreground">
+                <div className="font-sans font-semibold text-lg mb-2 text-foreground">
                   {stat.label}
                 </div>
                 <div className="text-sm text-muted-foreground font-sans">

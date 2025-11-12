@@ -29,11 +29,11 @@ const Hero = () => {
           <span className="text-primary font-sans font-medium">Premium Digital Real Estate</span>
         </div>
         
-        <h1 className="font-playfair font-black text-5xl md:text-7xl lg:text-8xl mb-8 text-gradient-primary drop-shadow-2xl tracking-tight animate-fade-in">
+        <h1 className="font-playfair font-black text-4xl md:text-6xl lg:text-7xl mb-8 text-gradient-primary drop-shadow-2xl tracking-tight animate-fade-in">
           Alaska Domains
         </h1>
         
-        <p className="font-sans text-xl md:text-2xl lg:text-3xl text-foreground/90 max-w-4xl mx-auto leading-relaxed mb-12 font-light">
+        <p className="font-sans text-lg md:text-xl lg:text-2xl text-foreground/90 max-w-4xl mx-auto leading-relaxed mb-12 font-light">
           Premium <span className="text-primary font-semibold">.com</span> Domains Inspired by the Last Frontier
         </p>
         

@@ -67,10 +67,10 @@ const Domains = () => {
             <span className="text-foreground font-sans font-medium">Premium Portfolio</span>
           </div>
           
-          <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-6 text-gradient-primary animate-fade-in">
+          <h2 className="font-playfair font-bold text-3xl md:text-4xl mb-6 text-gradient-primary animate-fade-in">
             Our Premium Domain Collection
           </h2>
-          <p className="text-muted-foreground max-w-3xl mx-auto font-sans text-lg leading-relaxed">
+          <p className="text-muted-foreground max-w-3xl mx-auto font-sans text-base leading-relaxed">
             Each domain represents a unique investment opportunity in Alaska's digital landscape. 
             All domains are available for immediate purchase with secure escrow transfer.
           </p>
@@ -79,7 +79,7 @@ const Domains = () => {
         {/* Domain Count */}
         <div className="text-center mb-12">
           <div className="inline-block glass-morphism px-8 py-4 rounded-2xl border border-luxury/20">
-            <span className="text-4xl font-bold text-gradient-luxury font-playfair">{domains.length}</span>
+            <span className="text-3xl font-bold text-gradient-luxury font-playfair">{domains.length}</span>
             <span className="text-light-gray ml-3 font-sans">Premium Domains Available</span>
           </div>
         </div>
@@ -123,7 +123,7 @@ const Domains = () => {
               {/* Category Header */}
               <div className="text-center mb-10">
                 <div className="inline-block glass-morphism px-8 py-3 rounded-full border border-primary/20 mb-4">
-                  <h3 className="font-playfair font-bold text-3xl text-gradient-luxury">
+                  <h3 className="font-playfair font-bold text-2xl text-gradient-luxury">
                     {category}
                   </h3>
                 </div>
@@ -151,10 +151,10 @@ const Domains = () => {
         {/* CTA Section */}
         <div className="text-center mt-20">
           <div className="glass-morphism p-8 rounded-2xl max-w-2xl mx-auto border border-primary/20">
-            <h3 className="font-playfair font-bold text-2xl mb-4 text-foreground">
+            <h3 className="font-playfair font-bold text-xl mb-4 text-foreground">
               Don't see what you're looking for?
             </h3>
-            <p className="text-muted-foreground mb-6 font-sans">
+            <p className="text-muted-foreground mb-6 font-sans text-sm">
               We have access to additional premium Alaska domains. Contact us for custom inquiries.
             </p>
             <a 

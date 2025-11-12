@@ -12,10 +12,10 @@ const Footer = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
             {/* Brand */}
             <div>
-              <h3 className="font-playfair font-bold text-3xl text-gradient-gold mb-4">
+              <h3 className="font-playfair font-bold text-2xl text-gradient-gold mb-4">
                 Alaska Domains
               </h3>
-              <p className="text-muted-foreground font-sans leading-relaxed mb-6">
+              <p className="text-muted-foreground font-sans leading-relaxed mb-6 text-sm">
                 Premium .com domains inspired by the Last Frontier. Institutional quality, timeless value, exceptional investment potential.
               </p>
               <div className="flex gap-2">
@@ -29,7 +29,7 @@ const Footer = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Mail className="w-5 h-5 text-primary" />
-                <h4 className="font-sans font-semibold text-lg text-foreground">Contact</h4>
+                <h4 className="font-sans font-semibold text-base text-foreground">Contact</h4>
               </div>
               <div className="space-y-3 font-sans">
                 <p className="text-muted-foreground">
@@ -51,7 +51,7 @@ const Footer = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="w-5 h-5 text-primary" />
-                <h4 className="font-sans font-semibold text-lg text-foreground">Secure Transactions</h4>
+                <h4 className="font-sans font-semibold text-base text-foreground">Secure Transactions</h4>
               </div>
               <ul className="space-y-2 text-muted-foreground font-sans text-sm">
                 <li className="flex items-start gap-2">

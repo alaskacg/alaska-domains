@@ -18,7 +18,7 @@ const Statement = () => {
             <Quote className="w-16 h-16 text-gold mb-8 mx-auto" />
             
             <blockquote className="text-center">
-              <p className="font-playfair font-bold text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight mb-8">
+              <p className="font-playfair font-bold text-2xl md:text-3xl lg:text-4xl text-foreground leading-tight mb-8">
                 A .com domain is the premium foundation of digital identity – institutional, standard-setting, and evoking instant authority.
               </p>
             </blockquote>

@@ -19,13 +19,13 @@ const DomainCard = ({ name, price, category }: DomainCardProps) => {
           <span className="text-primary text-xs font-sans font-medium">{category}</span>
         </div>
         
-        <h3 className="font-playfair font-bold text-2xl mb-3 text-gradient-gold group-hover:scale-105 transition-transform inline-block">
+        <h3 className="font-playfair font-bold text-xl mb-3 text-gradient-luxury group-hover:scale-105 transition-transform inline-block">
           {name}
         </h3>
         
         <div className="flex items-baseline gap-2 mb-6">
-          <TrendingUp className="w-4 h-4 text-gold" />
-          <span className="text-foreground text-xl font-sans font-bold">{price}</span>
+          <TrendingUp className="w-4 h-4 text-luxury" />
+          <span className="text-foreground text-lg font-sans font-bold">{price}</span>
         </div>
         
         <a 

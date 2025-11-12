@@ -36,10 +36,10 @@ const WhyDotCom = () => {
       
       <div className="container px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-playfair font-bold text-5xl md:text-6xl mb-6 text-gradient-primary">
+          <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-6 text-gradient-primary">
             Why .com Domains Command Premiums
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-sans">
+          <p className="text-muted-foreground text-base max-w-2xl mx-auto font-sans">
             The gold standard of digital real estate
           </p>
         </div>
@@ -54,7 +54,7 @@ const WhyDotCom = () => {
               <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform mx-auto">
                 <reason.icon className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="font-playfair font-bold text-2xl mb-4 text-foreground">
+              <h3 className="font-playfair font-bold text-xl mb-4 text-foreground">
                 {reason.title}
               </h3>
               <p className="text-muted-foreground font-sans leading-relaxed">
