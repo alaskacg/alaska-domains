@@ -1,54 +1,66 @@
 import DomainCard from "./DomainCard";
 import { Search, ChevronDown, SlidersHorizontal } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { supabase } from "@/integrations/supabase/client";
 
-const domains = [
-  // Mining & Exploration
-  { name: "akmines.com", price: "$45,000", category: "Mining" },
-  { name: "akminingcompany.com", price: "$38,000", category: "Mining" },
-  { name: "amblermines.com", price: "$32,000", category: "Mining" },
-  { name: "bethelminingcompany.com", price: "$28,000", category: "Mining" },
-  
-  // Exploration & Survey
-  { name: "akexploration.com", price: "$36,000", category: "Exploration" },
-  { name: "akexploratory.com", price: "$28,000", category: "Exploration" },
-  { name: "alaskaexplorationllc.com", price: "$35,000", category: "Exploration" },
-  
-  // Oil & Gas
-  { name: "akoilcompany.com", price: "$48,000", category: "Oil & Gas" },
-  { name: "alaskaoilcompany.com", price: "$58,000", category: "Oil & Gas" },
-  { name: "alaskaoilandgascompany.com", price: "$52,000", category: "Oil & Gas" },
-  
-  // Real Estate
-  { name: "kenaihomesales.com", price: "$26,000", category: "Real Estate" },
-  { name: "kenaiboroughrealty.com", price: "$22,000", category: "Real Estate" },
-  { name: "kenaiborough.com", price: "$32,000", category: "Real Estate" },
-  
-  // Foundations & Organizations
-  { name: "greatstatefoundation.com", price: "$38,000", category: "Foundation" },
-  
-  // Retail & Commerce
-  { name: "alaskasstore.com", price: "$28,000", category: "Retail" },
-  { name: "kenaiautosales.com", price: "$26,000", category: "Automotive" },
-];
-
-// Group domains by category
-const groupedDomains = domains.reduce((acc, domain) => {
-  if (!acc[domain.category]) {
-    acc[domain.category] = [];
-  }
-  acc[domain.category].push(domain);
-  return acc;
-}, {} as Record<string, typeof domains>);
-
-const categories = Object.keys(groupedDomains).sort();
+interface Domain {
+  id?: string;
+  name: string;
+  price: number | string;
+  category: string;
+  status?: string;
+}
 
 const Domains = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [priceFilter, setPriceFilter] = useState<string>("all");
+  const [domains, setDomains] = useState<Domain[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchDomains();
+    
+    // Subscribe to realtime updates
+    const channel = supabase
+      .channel('domains-changes')
+      .on('postgres_changes', { 
+        event: '*', 
+        schema: 'public', 
+        table: 'domains' 
+      }, () => {
+        fetchDomains();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const fetchDomains = async () => {
+    const { data, error } = await supabase
+      .from('domains')
+      .select('*')
+      .order('category', { ascending: true });
+
+    if (!error && data) {
+      setDomains(data);
+    }
+    setLoading(false);
+  };
+
+  // Group domains by category
+  const groupedDomains = domains.reduce((acc, domain) => {
+    if (!acc[domain.category]) {
+      acc[domain.category] = [];
+    }
+    acc[domain.category].push(domain);
+    return acc;
+  }, {} as Record<string, Domain[]>);
+
 
   // Filter domains
   const filteredDomains = useMemo(() => {
@@ -56,7 +68,7 @@ const Domains = () => {
       const matchesSearch = domain.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            domain.category.toLowerCase().includes(searchQuery.toLowerCase());
       
-      const price = parseInt(domain.price.replace(/[$,]/g, ''));
+      const price = typeof domain.price === 'number' ? domain.price : parseInt(domain.price.toString().replace(/[$,]/g, ''));
       let matchesPrice = true;
       
       if (priceFilter === "under30k") matchesPrice = price < 30000;
@@ -66,7 +78,7 @@ const Domains = () => {
       
       return matchesSearch && matchesPrice;
     });
-  }, [searchQuery, priceFilter]);
+  }, [domains, searchQuery, priceFilter]);
 
   // Group filtered domains by category
   const filteredGroupedDomains = useMemo(() => {
@@ -213,7 +225,12 @@ const Domains = () => {
                       className="animate-slide-up"
                       style={{ animationDelay: `${(index % 20) * 30}ms` }}
                     >
-                      <DomainCard {...domain} />
+                      <DomainCard 
+                        name={domain.name}
+                        price={typeof domain.price === 'number' ? `$${domain.price.toLocaleString()}` : domain.price.toString()}
+                        category={domain.category}
+                        status={domain.status || 'available'}
+                      />
                     </div>
                   ))}
                 </div>
