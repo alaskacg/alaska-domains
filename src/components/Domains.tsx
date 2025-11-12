@@ -7,15 +7,12 @@ const domains = [
   { name: "akmines.com", price: "$45,000", category: "Mining" },
   { name: "akminingcompany.com", price: "$38,000", category: "Mining" },
   { name: "akmininggroup.com", price: "$42,000", category: "Mining" },
-  { name: "alaskamininggroup.com", price: "$48,000", category: "Mining" },
   { name: "amblermines.com", price: "$32,000", category: "Mining" },
   { name: "bethelminingcompany.com", price: "$28,000", category: "Mining" },
   
   // Exploration & Survey
   { name: "akexploration.com", price: "$36,000", category: "Exploration" },
   { name: "akexploratory.com", price: "$28,000", category: "Exploration" },
-  { name: "akmineralexploration.com", price: "$32,000", category: "Exploration" },
-  { name: "alaskamineralexploration.com", price: "$38,000", category: "Exploration" },
   { name: "alaskaexplorationllc.com", price: "$35,000", category: "Exploration" },
   
   // Oil & Gas

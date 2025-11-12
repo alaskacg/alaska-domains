@@ -48,10 +48,10 @@ const WhyDotCom = () => {
           {reasons.map((reason, index) => (
             <div 
               key={index}
-              className="glass-morphism p-8 rounded-2xl hover-lift shadow-lg animate-slide-up group"
+              className="glass-morphism p-8 rounded-2xl hover-lift shadow-lg animate-slide-up group text-center"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform mx-auto">
                 <reason.icon className="w-8 h-8 text-primary" />
               </div>
               <h3 className="font-playfair font-bold text-2xl mb-4 text-foreground">
