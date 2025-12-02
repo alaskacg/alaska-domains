@@ -29,7 +29,7 @@ const Hero = () => {
           <span className="text-primary font-sans font-medium">Premium Digital Real Estate</span>
         </div>
         
-        <h1 className="font-playfair font-black text-4xl md:text-6xl lg:text-7xl mb-8 text-gradient-primary drop-shadow-2xl tracking-tight animate-fade-in">
+        <h1 className="font-playfair font-black text-3xl md:text-5xl lg:text-6xl mb-8 text-gradient-primary drop-shadow-2xl tracking-tight animate-fade-in">
           Alaska Domains
         </h1>
         
