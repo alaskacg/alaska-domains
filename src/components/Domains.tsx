@@ -113,7 +113,7 @@ const Domains = () => {
             <span className="text-foreground font-sans font-medium">Premium Portfolio</span>
           </div>
           
-          <h2 className="font-playfair font-bold text-3xl md:text-4xl mb-6 text-gradient-primary animate-fade-in">
+          <h2 className="font-playfair font-bold text-2xl md:text-3xl mb-6 text-gradient-primary animate-fade-in">
             Our Premium Domain Collection
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto font-sans text-base leading-relaxed">
@@ -208,7 +208,7 @@ const Domains = () => {
                 {/* Category Header */}
                 <div className="text-center mb-10">
                   <div className="inline-block glass-morphism px-8 py-3 rounded-full border border-primary/20 mb-4">
-                    <h3 className="font-playfair font-bold text-2xl text-gradient-luxury">
+                    <h3 className="font-playfair font-bold text-xl text-gradient-luxury">
                       {category}
                     </h3>
                   </div>
