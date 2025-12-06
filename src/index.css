@@ -127,4 +127,79 @@ All colors MUST be HSL.
     background-repeat: no-repeat;
     background-size: cover;
   }
+  
+  /* Aurora animations */
+  @keyframes aurora-1 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(10%, 10%) rotate(5deg);
+    }
+    50% {
+      transform: translate(5%, -5%) rotate(-3deg);
+    }
+    75% {
+      transform: translate(-5%, 5%) rotate(2deg);
+    }
+  }
+  
+  @keyframes aurora-2 {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-10%, -5%) rotate(-5deg);
+    }
+    50% {
+      transform: translate(-5%, 10%) rotate(3deg);
+    }
+    75% {
+      transform: translate(5%, -10%) rotate(-2deg);
+    }
+  }
+  
+  @keyframes float-particle {
+    0%, 100% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px) scale(1.2);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-40px) translateX(-5px) scale(0.8);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateY(-20px) translateX(-10px) scale(1.1);
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+  
+  .animate-aurora-1 {
+    animation: aurora-1 20s ease-in-out infinite;
+  }
+  
+  .animate-aurora-2 {
+    animation: aurora-2 25s ease-in-out infinite;
+  }
+  
+  .animate-float-particle {
+    animation: float-particle 8s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
 }

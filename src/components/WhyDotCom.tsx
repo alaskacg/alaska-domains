@@ -55,36 +55,47 @@ const reasons = [
 
 const WhyDotCom = () => {
   return (
-    <section id="why-dotcom" className="py-24 relative overflow-hidden">
+    <section id="why-dotcom" className="py-20 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted to-background" />
       
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+      </div>
+      
       <div className="container px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="font-playfair font-bold text-4xl md:text-5xl mb-6 text-gradient-primary">
+        <div className="text-center mb-12">
+          <h2 className="font-cinzel font-bold text-xl md:text-2xl mb-4 text-gradient-primary tracking-widest uppercase">
             Why Domains Are Premier Investments
           </h2>
-          <p className="text-muted-foreground text-base max-w-2xl mx-auto font-sans">
+          <p className="text-muted-foreground text-sm max-w-xl mx-auto font-sans">
             Proven statistics and market data on domain investment value
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 max-w-7xl mx-auto">
           {reasons.map((reason, index) => (
             <div 
               key={index}
-              className="glass-morphism p-6 rounded-2xl hover-lift shadow-lg animate-slide-up group text-center"
+              className="glass-morphism p-5 rounded-2xl hover-lift shadow-lg animate-slide-up group text-center relative overflow-hidden"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <div className="bg-primary/10 w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform mx-auto">
-                <reason.icon className="w-7 h-7 text-primary" />
+              {/* Hover glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 mx-auto">
+                  <reason.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-cinzel font-bold text-sm mb-2 text-foreground tracking-wide">
+                  {reason.title}
+                </h3>
+                <p className="text-muted-foreground font-sans leading-relaxed text-xs">
+                  {reason.description}
+                </p>
               </div>
-              <h3 className="font-playfair font-bold text-lg mb-3 text-foreground">
-                {reason.title}
-              </h3>
-              <p className="text-muted-foreground font-sans leading-relaxed text-sm">
-                {reason.description}
-              </p>
             </div>
           ))}
         </div>
