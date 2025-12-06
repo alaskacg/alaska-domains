@@ -107,18 +107,12 @@ const Domains = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-muted via-background to-muted" />
       
       <div className="container px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-6 py-3 glass-morphism rounded-full mb-6">
-            <Search className="w-5 h-5 text-primary" />
-            <span className="text-foreground font-sans font-medium">Premium Portfolio</span>
-          </div>
-          
-          <h2 className="font-playfair font-bold text-2xl md:text-3xl mb-6 text-gradient-primary animate-fade-in">
-            Our Premium Domain Collection
+        <div className="text-center mb-12">
+          <h2 className="font-cinzel font-bold text-xl md:text-2xl mb-4 text-gradient-primary animate-fade-in tracking-widest uppercase">
+            Premium Domain Collection
           </h2>
-          <p className="text-muted-foreground max-w-3xl mx-auto font-sans text-base leading-relaxed">
-            Each domain represents a unique investment opportunity in Alaska's digital landscape. 
-            All domains are available for immediate purchase with secure escrow transfer.
+          <p className="text-muted-foreground max-w-2xl mx-auto font-sans text-sm leading-relaxed">
+            Each domain represents a unique investment opportunity in Alaska's digital landscape.
           </p>
         </div>
         
@@ -205,15 +199,12 @@ const Domains = () => {
           <div className="space-y-20 max-w-7xl mx-auto">
             {filteredCategories.map((category) => (
               <div key={category} id={`category-${category}`} className="scroll-mt-24">
-                {/* Category Header */}
-                <div className="text-center mb-10">
-                  <div className="inline-block glass-morphism px-8 py-3 rounded-full border border-primary/20 mb-4">
-                    <h3 className="font-playfair font-bold text-xl text-gradient-luxury">
-                      {category}
-                    </h3>
-                  </div>
-                  <p className="text-muted-foreground font-sans">
-                    {filteredGroupedDomains[category].length} premium domain{filteredGroupedDomains[category].length > 1 ? 's' : ''} available
+                <div className="text-center mb-8">
+                  <h3 className="font-cinzel font-bold text-base tracking-widest text-gradient-luxury uppercase inline-block">
+                    {category}
+                  </h3>
+                  <p className="text-muted-foreground font-sans text-xs mt-1 tracking-wide">
+                    {filteredGroupedDomains[category].length} domain{filteredGroupedDomains[category].length > 1 ? 's' : ''} available
                   </p>
                 </div>
 

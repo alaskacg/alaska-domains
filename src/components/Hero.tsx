@@ -1,12 +1,17 @@
 import heroImage from "@/assets/hero-alaska.jpg";
-import logoImage from "@/assets/alaska-domains-logo.png";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
   const titleText = "Alaska Domains";
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
   
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section id="hero" className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Dark Overlay */}
       <div 
         className="absolute inset-0 z-0"
@@ -18,36 +23,41 @@ const Hero = () => {
         }}
       />
       
-      {/* Animated Grid Overlay */}
-      <div className="absolute inset-0 z-10 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(rgba(74, 222, 128, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(74, 222, 128, 0.1) 1px, transparent 1px)',
-          backgroundSize: '100px 100px'
-        }} />
+      {/* Animated Aurora Effect */}
+      <div className="absolute inset-0 z-5 overflow-hidden opacity-30">
+        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-primary/40 via-transparent to-transparent animate-aurora-1" />
+        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-accent/30 via-transparent to-transparent animate-aurora-2" />
+      </div>
+      
+      {/* Floating Particles */}
+      <div className="absolute inset-0 z-10">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-primary/60 rounded-full animate-float-particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${8 + Math.random() * 4}s`
+            }}
+          />
+        ))}
       </div>
       
       {/* Content */}
-      <div className="container relative z-20 text-center px-4">
-        {/* Logo with entrance animation */}
-        <div className="mb-6 flex justify-center">
-          <img 
-            src={logoImage} 
-            alt="Alaska Domains Logo" 
-            className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain animate-logo-entrance animate-glow-pulse"
-            style={{ animationDelay: '0.2s' }}
-          />
-        </div>
-        
+      <div className="container relative z-20 text-center px-4 py-8">
         {/* Animated Title with letter-by-letter reveal */}
-        <h1 className="font-cinzel font-bold text-2xl md:text-4xl lg:text-5xl mb-4 tracking-widest perspective-1000">
+        <h1 className="font-cinzel font-bold text-2xl md:text-3xl lg:text-4xl mb-3 tracking-[0.3em] uppercase">
           <span className="inline-flex overflow-hidden">
             {titleText.split('').map((char, index) => (
               <span
                 key={index}
-                className="inline-block text-gradient-primary animate-letter-reveal"
+                className={`inline-block text-gradient-primary transition-all duration-700 ${
+                  isLoaded ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-sm'
+                }`}
                 style={{
-                  animationDelay: `${0.5 + index * 0.08}s`,
-                  opacity: 0
+                  transitionDelay: `${index * 80}ms`
                 }}
               >
                 {char === ' ' ? '\u00A0' : char}
@@ -57,48 +67,59 @@ const Hero = () => {
         </h1>
         
         {/* Animated underline */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-4">
           <div 
-            className="h-0.5 w-48 md:w-64 bg-gradient-to-r from-transparent via-primary to-transparent animate-underline-expand origin-center"
-            style={{ animationDelay: '1.8s', transform: 'scaleX(0)' }}
+            className={`h-px w-32 md:w-48 bg-gradient-to-r from-transparent via-primary to-transparent transition-all duration-1000 ${
+              isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
+            }`}
+            style={{ transitionDelay: '1.4s' }}
           />
         </div>
         
         <p 
-          className="font-sans text-base md:text-lg lg:text-xl text-foreground/90 max-w-3xl mx-auto leading-relaxed mb-12 font-light animate-fade-in opacity-0"
-          style={{ animationDelay: '2s', animationFillMode: 'forwards' }}
+          className={`font-cinzel text-sm md:text-base lg:text-lg text-foreground/80 max-w-2xl mx-auto leading-relaxed mb-8 tracking-wider transition-all duration-700 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: '1.6s' }}
         >
           Premium <span className="text-primary font-semibold">.com</span> Domains Inspired by the Last Frontier
         </p>
         
         <div 
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in opacity-0"
-          style={{ animationDelay: '2.3s', animationFillMode: 'forwards' }}
+          className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-700 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: '1.9s' }}
         >
           <a 
             href="#domains" 
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-xl text-lg font-semibold hover-lift shadow-2xl font-sans group"
+            className="group inline-flex items-center gap-2 glass-morphism px-8 py-4 rounded-xl text-base font-cinzel tracking-wide hover-lift shadow-2xl border border-primary/30 relative overflow-hidden"
           >
-            Explore Domains
-            <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+            <span className="relative z-10">Explore Domains</span>
+            <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform relative z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
           
           <a 
             href="mailto:support@alaskadomains.com" 
-            className="inline-flex items-center gap-2 glass-morphism px-8 py-4 rounded-xl text-lg font-semibold hover-lift shadow-2xl font-sans border border-primary/30"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-xl text-base font-cinzel tracking-wide hover-lift shadow-2xl relative overflow-hidden"
           >
-            Contact Us
+            <Mail className="w-4 h-4 relative z-10" />
+            <span className="relative z-10">Contact Us</span>
+            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
         </div>
       </div>
       
       {/* Scroll Indicator */}
       <div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce animate-fade-in opacity-0"
-        style={{ animationDelay: '2.6s', animationFillMode: 'forwards' }}
+        className={`absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-700 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}
+        style={{ transitionDelay: '2.2s' }}
       >
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center backdrop-blur-sm">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse" />
+        <div className="w-5 h-8 border border-primary/50 rounded-full flex justify-center backdrop-blur-sm animate-bounce">
+          <div className="w-0.5 h-2 bg-primary rounded-full mt-1.5 animate-pulse" />
         </div>
       </div>
     </section>
