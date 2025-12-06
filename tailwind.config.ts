@@ -69,6 +69,7 @@ export default {
         },
       },
       fontFamily: {
+        cinzel: ['Cinzel', 'Georgia', 'serif'],
         playfair: ['Playfair Display', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
@@ -122,6 +123,48 @@ export default {
             backgroundPosition: "1000px 0"
           }
         },
+        "letter-reveal": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(100%) rotateX(-90deg)",
+            filter: "blur(10px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0) rotateX(0deg)",
+            filter: "blur(0px)"
+          }
+        },
+        "logo-entrance": {
+          "0%": {
+            opacity: "0",
+            transform: "scale(0.5) rotate(-180deg)"
+          },
+          "50%": {
+            opacity: "1",
+            transform: "scale(1.1) rotate(10deg)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "scale(1) rotate(0deg)"
+          }
+        },
+        "glow-pulse": {
+          "0%, 100%": {
+            filter: "drop-shadow(0 0 20px hsl(var(--primary) / 0.5))"
+          },
+          "50%": {
+            filter: "drop-shadow(0 0 40px hsl(var(--primary) / 0.8))"
+          }
+        },
+        "underline-expand": {
+          "0%": {
+            transform: "scaleX(0)"
+          },
+          "100%": {
+            transform: "scaleX(1)"
+          }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -129,6 +172,10 @@ export default {
         "fade-in": "fade-in 0.6s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
         "shimmer": "shimmer 3s ease-in-out infinite",
+        "letter-reveal": "letter-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "logo-entrance": "logo-entrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "underline-expand": "underline-expand 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
     },
   },
