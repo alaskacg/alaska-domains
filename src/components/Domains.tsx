@@ -71,10 +71,10 @@ const Domains = () => {
       const price = typeof domain.price === 'number' ? domain.price : parseInt(domain.price.toString().replace(/[$,]/g, ''));
       let matchesPrice = true;
       
-      if (priceFilter === "under30k") matchesPrice = price < 30000;
-      else if (priceFilter === "30k-40k") matchesPrice = price >= 30000 && price < 40000;
-      else if (priceFilter === "40k-50k") matchesPrice = price >= 40000 && price < 50000;
-      else if (priceFilter === "over50k") matchesPrice = price >= 50000;
+      if (priceFilter === "under10k") matchesPrice = price < 10000;
+      else if (priceFilter === "10k-20k") matchesPrice = price >= 10000 && price < 20000;
+      else if (priceFilter === "20k-35k") matchesPrice = price >= 20000 && price < 35000;
+      else if (priceFilter === "over35k") matchesPrice = price >= 35000;
       
       return matchesSearch && matchesPrice;
     });
@@ -141,10 +141,10 @@ const Domains = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Prices</SelectItem>
-                    <SelectItem value="under30k">Under $30,000</SelectItem>
-                    <SelectItem value="30k-40k">$30,000 - $40,000</SelectItem>
-                    <SelectItem value="40k-50k">$40,000 - $50,000</SelectItem>
-                    <SelectItem value="over50k">Over $50,000</SelectItem>
+                    <SelectItem value="under10k">Under $10,000</SelectItem>
+                    <SelectItem value="10k-20k">$10,000 - $20,000</SelectItem>
+                    <SelectItem value="20k-35k">$20,000 - $35,000</SelectItem>
+                    <SelectItem value="over35k">Over $35,000</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
