@@ -1,5 +1,5 @@
 import DomainCard from "./DomainCard";
-import { Search, ChevronDown, SlidersHorizontal } from "lucide-react";
+import { Search, ChevronDown, SlidersHorizontal, RefreshCw } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -19,17 +19,38 @@ const Domains = () => {
   const [priceFilter, setPriceFilter] = useState<string>("all");
   const [domains, setDomains] = useState<Domain[]>([]);
   const [loading, setLoading] = useState(true);
+  const [lastSyncedAt, setLastSyncedAt] = useState<Date | null>(null);
+
+  const fetchDomains = async () => {
+    setLoading(true);
+
+    const { data, error } = await supabase
+      .from('domains')
+      .select('*')
+      .order('category', { ascending: true });
+
+    if (error) {
+      // Keep UI stable if backend hiccups; log for debugging.
+      console.error('[Domains] Failed to fetch domains', error);
+      setLoading(false);
+      return;
+    }
+
+    setDomains(data ?? []);
+    setLastSyncedAt(new Date());
+    setLoading(false);
+  };
 
   useEffect(() => {
     fetchDomains();
-    
+
     // Subscribe to realtime updates
     const channel = supabase
       .channel('domains-changes')
-      .on('postgres_changes', { 
-        event: '*', 
-        schema: 'public', 
-        table: 'domains' 
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'domains'
       }, () => {
         fetchDomains();
       })
@@ -40,16 +61,8 @@ const Domains = () => {
     };
   }, []);
 
-  const fetchDomains = async () => {
-    const { data, error } = await supabase
-      .from('domains')
-      .select('*')
-      .order('category', { ascending: true });
-
-    if (!error && data) {
-      setDomains(data);
-    }
-    setLoading(false);
+  const handleManualRefresh = async () => {
+    await fetchDomains();
   };
 
   // Group domains by category
@@ -119,10 +132,29 @@ const Domains = () => {
         {/* Search and Filter */}
         <div className="max-w-4xl mx-auto mb-12 space-y-4">
           <div className="glass-morphism p-6 rounded-2xl border border-primary/20">
-            <div className="flex items-center gap-3 mb-4">
-              <SlidersHorizontal className="w-5 h-5 text-primary" />
-              <h3 className="font-sans font-semibold text-sm text-foreground">Filter Domains</h3>
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <SlidersHorizontal className="w-5 h-5 text-primary" />
+                <h3 className="font-sans font-semibold text-sm text-foreground">Filter Domains</h3>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleManualRefresh}
+                disabled={loading}
+                className="glass-morphism px-3 py-2 rounded-lg border border-primary/20 hover-lift font-sans text-xs text-foreground inline-flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <RefreshCw className={"w-4 h-4 text-primary " + (loading ? "animate-spin" : "")}
+                />
+                Refresh
+              </button>
             </div>
+
+            {lastSyncedAt && (
+              <p className="text-xs text-muted-foreground font-sans mb-4">
+                Last synced: {lastSyncedAt.toLocaleTimeString()}
+              </p>
+            )}
             
             <div className="grid md:grid-cols-2 gap-4">
               <div>
