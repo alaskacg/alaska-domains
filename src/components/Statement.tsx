@@ -2,7 +2,7 @@ import { Quote } from "lucide-react";
 
 const Statement = () => {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-12 md:py-16 relative overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
       
@@ -13,17 +13,17 @@ const Statement = () => {
       </div>
       
       <div className="container px-4 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          <div className="glass-morphism p-12 md:p-16 rounded-3xl border border-primary/30 hover-lift">
-            <Quote className="w-16 h-16 text-gold mb-8 mx-auto" />
+        <div className="max-w-4xl mx-auto">
+          <div className="glass-morphism p-6 md:p-10 rounded-2xl border border-primary/30 hover-lift">
+            <Quote className="w-10 h-10 md:w-12 md:h-12 text-gold mb-4 mx-auto" />
             
             <blockquote className="text-center">
-              <p className="font-playfair font-bold text-2xl md:text-3xl lg:text-4xl text-foreground leading-tight mb-8">
+              <p className="font-playfair font-bold text-lg md:text-xl lg:text-2xl text-foreground leading-tight mb-4">
                 A .com domain is the premium foundation of digital identity – institutional, standard-setting, and evoking instant authority.
               </p>
             </blockquote>
             
-            <div className="flex justify-center gap-2 mt-8">
+            <div className="flex justify-center gap-2 mt-4">
               <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
               <div className="w-2 h-2 rounded-full bg-primary animate-pulse" style={{ animationDelay: '0.3s' }} />
               <div className="w-2 h-2 rounded-full bg-accent animate-pulse" style={{ animationDelay: '0.6s' }} />

@@ -55,7 +55,7 @@ const reasons = [
 
 const WhyDotCom = () => {
   return (
-    <section id="why-dotcom" className="py-20 relative overflow-hidden">
+    <section id="why-dotcom" className="py-12 md:py-16 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted to-background" />
       
@@ -66,8 +66,8 @@ const WhyDotCom = () => {
       </div>
       
       <div className="container px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="font-cinzel font-bold text-xl md:text-2xl mb-4 text-gradient-primary tracking-widest uppercase">
+        <div className="text-center mb-8">
+          <h2 className="font-cinzel font-bold text-lg md:text-xl mb-3 text-gradient-primary tracking-widest uppercase">
             Why Domains Are Premier Investments
           </h2>
           <p className="text-muted-foreground text-sm max-w-xl mx-auto font-sans">

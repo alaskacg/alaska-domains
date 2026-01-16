@@ -11,7 +11,7 @@ const Hero = () => {
   }, []);
   
   return (
-    <section id="hero" className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden pt-8 md:pt-12">
       {/* Background Image with Dark Overlay */}
       <div 
         className="absolute inset-0 z-0"
@@ -46,9 +46,9 @@ const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="container relative z-20 text-center px-4 py-8">
+      <div className="container relative z-20 text-center px-4 py-4">
         {/* Animated Title with letter-by-letter reveal */}
-        <h1 className="font-cinzel font-bold text-2xl md:text-3xl lg:text-4xl mb-3 tracking-[0.3em] uppercase">
+        <h1 className="font-cinzel font-bold text-xl md:text-2xl lg:text-3xl mb-2 tracking-[0.2em] md:tracking-[0.3em] uppercase">
           <span className="inline-flex overflow-hidden">
             {titleText.split('').map((char, index) => (
               <span
@@ -67,9 +67,9 @@ const Hero = () => {
         </h1>
         
         {/* Animated underline */}
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-3">
           <div 
-            className={`h-px w-32 md:w-48 bg-gradient-to-r from-transparent via-primary to-transparent transition-all duration-1000 ${
+            className={`h-px w-24 md:w-40 bg-gradient-to-r from-transparent via-primary to-transparent transition-all duration-1000 ${
               isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
             }`}
             style={{ transitionDelay: '1.4s' }}
@@ -77,7 +77,7 @@ const Hero = () => {
         </div>
         
         <p 
-          className={`font-cinzel text-sm md:text-base lg:text-lg text-foreground/80 max-w-2xl mx-auto leading-relaxed mb-8 tracking-wider transition-all duration-700 ${
+          className={`font-cinzel text-xs md:text-sm lg:text-base text-foreground/80 max-w-xl mx-auto leading-relaxed mb-6 tracking-wide transition-all duration-700 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: '1.6s' }}
@@ -86,14 +86,14 @@ const Hero = () => {
         </p>
         
         <div 
-          className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-700 ${
+          className={`flex flex-col sm:flex-row gap-3 justify-center items-center transition-all duration-700 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: '1.9s' }}
         >
           <a 
             href="#domains" 
-            className="group inline-flex items-center gap-2 glass-morphism px-8 py-4 rounded-xl text-base font-cinzel tracking-wide hover-lift shadow-2xl border border-primary/30 relative overflow-hidden"
+            className="group inline-flex items-center gap-2 glass-morphism px-6 py-3 rounded-xl text-sm font-cinzel tracking-wide hover-lift shadow-2xl border border-primary/30 relative overflow-hidden"
           >
             <span className="relative z-10">Explore Domains</span>
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform relative z-10" />
@@ -102,24 +102,12 @@ const Hero = () => {
           
           <a 
             href="mailto:support@alaskadomains.com" 
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent px-8 py-4 rounded-xl text-base font-cinzel tracking-wide hover-lift shadow-2xl relative overflow-hidden"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent px-6 py-3 rounded-xl text-sm font-cinzel tracking-wide hover-lift shadow-2xl relative overflow-hidden"
           >
             <Mail className="w-4 h-4 relative z-10" />
             <span className="relative z-10">Contact Us</span>
             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-        </div>
-      </div>
-      
-      {/* Scroll Indicator */}
-      <div 
-        className={`absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-700 ${
-          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`}
-        style={{ transitionDelay: '2.2s' }}
-      >
-        <div className="w-5 h-8 border border-primary/50 rounded-full flex justify-center backdrop-blur-sm animate-bounce">
-          <div className="w-0.5 h-2 bg-primary rounded-full mt-1.5 animate-pulse" />
         </div>
       </div>
     </section>
