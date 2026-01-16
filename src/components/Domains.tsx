@@ -115,13 +115,13 @@ const Domains = () => {
   };
 
   return (
-    <section id="domains" className="py-24 relative overflow-hidden">
+    <section id="domains" className="py-12 md:py-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted via-background to-muted" />
       
       <div className="container px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="font-cinzel font-bold text-xl md:text-2xl mb-4 text-gradient-primary animate-fade-in tracking-widest uppercase">
+        <div className="text-center mb-8">
+          <h2 className="font-cinzel font-bold text-lg md:text-xl mb-3 text-gradient-primary animate-fade-in tracking-widest uppercase">
             Premium Domain Collection
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-sans text-sm leading-relaxed">
@@ -130,7 +130,7 @@ const Domains = () => {
         </div>
         
         {/* Search and Filter */}
-        <div className="max-w-4xl mx-auto mb-12 space-y-4">
+        <div className="max-w-4xl mx-auto mb-8 space-y-3">
           <div className="glass-morphism p-6 rounded-2xl border border-primary/20">
             <div className="flex items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
@@ -195,7 +195,7 @@ const Domains = () => {
         </div>
 
         {/* Category Navigation Dropdown */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8">
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -228,7 +228,7 @@ const Domains = () => {
         
         {/* Domains by Category */}
         {filteredCategories.length > 0 ? (
-          <div className="space-y-20 max-w-7xl mx-auto">
+          <div className="space-y-12 max-w-7xl mx-auto">
             {filteredCategories.map((category) => (
               <div key={category} id={`category-${category}`} className="scroll-mt-24">
                 <div className="text-center mb-8">

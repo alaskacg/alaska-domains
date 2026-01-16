@@ -43,17 +43,17 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-24 relative overflow-hidden">
+    <section id="faq" className="py-12 md:py-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted to-background" />
       
       <div className="container px-4 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 px-6 py-3 glass-morphism rounded-full mb-6">
             <HelpCircle className="w-5 h-5 text-primary" />
             <span className="text-foreground font-sans font-medium">Questions & Answers</span>
           </div>
           
-          <h2 className="font-playfair font-bold text-3xl md:text-4xl mb-6 text-gradient-primary">
+          <h2 className="font-playfair font-bold text-xl md:text-2xl mb-4 text-gradient-primary">
             Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto font-sans text-sm">
@@ -81,7 +81,7 @@ const FAQ = () => {
         </div>
 
         {/* Additional Help CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-8">
           <p className="text-muted-foreground font-sans text-sm mb-4">
             Still have questions?
           </p>
