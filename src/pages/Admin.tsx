@@ -85,13 +85,20 @@ const Admin = () => {
   };
 
   const fetchPurchases = async () => {
-    const { data, error } = await supabase
-      .from('purchases')
-      .select('*')
-      .order('created_at', { ascending: false });
-    
-    if (!error && data) {
-      setPurchases(data);
+    try {
+      // Use edge function to fetch purchases (bypasses RLS with admin verification)
+      const { data, error } = await supabase.functions.invoke('admin-get-purchases');
+      
+      if (error) {
+        console.error('Error fetching purchases:', error);
+        return;
+      }
+      
+      if (data?.data) {
+        setPurchases(data.data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch purchases:', err);
     }
   };
 
@@ -102,10 +109,21 @@ const Admin = () => {
 
   const handleSavePrice = async (domainId: string) => {
     const newPrice = parseFloat(editPrice);
+    
+    // Client-side validation (database enforces server-side)
     if (isNaN(newPrice) || newPrice <= 0) {
       toast({
         title: "Invalid Price",
-        description: "Please enter a valid price",
+        description: "Please enter a valid positive price",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (newPrice > 100000000) {
+      toast({
+        title: "Invalid Price",
+        description: "Price cannot exceed $100,000,000",
         variant: "destructive",
       });
       return;
@@ -117,9 +135,12 @@ const Admin = () => {
       .eq('id', domainId);
 
     if (error) {
+      console.error('Price update error:', error);
       toast({
         title: "Error",
-        description: "Failed to update price",
+        description: error.message.includes('domain_price') 
+          ? "Price must be between $0 and $100,000,000"
+          : "Failed to update price",
         variant: "destructive",
       });
     } else {
