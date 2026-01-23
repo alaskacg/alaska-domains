@@ -46,9 +46,60 @@ serve(async (req) => {
     // Handle checkout.session.completed event
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
-      const domainName = session.metadata.domain_name;
+      const domainName = session.metadata?.domain_name;
+
+      if (!domainName) {
+        console.error('Missing domain_name in session metadata');
+        return new Response(
+          JSON.stringify({ error: 'Invalid session metadata' }),
+          { status: 400, headers: corsHeaders }
+        );
+      }
 
       console.log('Processing completed checkout for domain:', domainName);
+
+      // Check current domain status to handle race condition
+      const { data: currentDomain } = await supabaseClient
+        .from('domains')
+        .select('status, reserved_by')
+        .eq('name', domainName)
+        .single();
+
+      // If domain is already sold (shouldn't happen with reservations, but defensive)
+      if (currentDomain?.status === 'sold') {
+        console.warn('Domain already sold, issuing refund for session:', session.id);
+        
+        // Issue refund via Stripe API
+        const STRIPE_SECRET_KEY = Deno.env.get('STRIPE_SECRET_KEY');
+        if (STRIPE_SECRET_KEY && session.payment_intent) {
+          try {
+            await fetch('https://api.stripe.com/v1/refunds', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: new URLSearchParams({
+                'payment_intent': session.payment_intent,
+              }).toString(),
+            });
+            console.log('Refund issued for payment_intent:', session.payment_intent);
+          } catch (refundError) {
+            console.error('Failed to issue refund:', refundError);
+          }
+        }
+
+        // Update purchase as refunded
+        await supabaseClient
+          .from('purchases')
+          .update({ status: 'refunded' })
+          .eq('stripe_session_id', session.id);
+
+        return new Response(
+          JSON.stringify({ received: true, action: 'refunded' }),
+          { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
+        );
+      }
 
       // Update purchase record
       const { error: updatePurchaseError } = await supabaseClient
@@ -63,16 +114,51 @@ serve(async (req) => {
         console.error('Error updating purchase:', updatePurchaseError);
       }
 
-      // Mark domain as sold
+      // Mark domain as sold (clear reservation fields)
       const { error: updateDomainError } = await supabaseClient
         .from('domains')
-        .update({ status: 'sold' })
+        .update({ 
+          status: 'sold',
+          reserved_at: null,
+          reserved_by: null
+        })
         .eq('name', domainName);
 
       if (updateDomainError) {
         console.error('Error updating domain status:', updateDomainError);
       } else {
         console.log('Domain marked as sold:', domainName);
+      }
+    }
+
+    // Handle checkout.session.expired - release reservation
+    if (event.type === 'checkout.session.expired') {
+      const session = event.data.object;
+      const domainName = session.metadata?.domain_name;
+
+      if (domainName) {
+        console.log('Checkout expired, releasing reservation for:', domainName);
+        
+        // Release the reservation
+        const { error } = await supabaseClient
+          .from('domains')
+          .update({ 
+            status: 'available',
+            reserved_at: null,
+            reserved_by: null
+          })
+          .eq('name', domainName)
+          .eq('status', 'reserved');
+
+        if (error) {
+          console.error('Error releasing reservation:', error);
+        }
+
+        // Update purchase as expired
+        await supabaseClient
+          .from('purchases')
+          .update({ status: 'expired' })
+          .eq('stripe_session_id', session.id);
       }
     }
 
