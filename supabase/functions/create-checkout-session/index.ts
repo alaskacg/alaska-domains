@@ -176,7 +176,7 @@ serve(async (req) => {
       },
       body: new URLSearchParams({
         'mode': 'payment',
-        'success_url': `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
+        'success_url': `${req.headers.get('origin')}/success?domain=${encodeURIComponent(domainName)}`,
         'cancel_url': `${req.headers.get('origin')}/cancel`,
         'line_items[0][price_data][currency]': 'usd',
         'line_items[0][price_data][product_data][name]': domainName,
