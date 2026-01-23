@@ -1,29 +1,10 @@
 import { CheckCircle } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 
 const Success = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [purchase, setPurchase] = useState<any>(null);
-  const sessionId = searchParams.get('session_id');
-
-  useEffect(() => {
-    if (sessionId) {
-      // Fetch purchase details
-      supabase
-        .from('purchases')
-        .select('*')
-        .eq('stripe_session_id', sessionId)
-        .single()
-        .then(({ data }) => {
-          if (data) {
-            setPurchase(data);
-          }
-        });
-    }
-  }, [sessionId]);
+  const domainName = searchParams.get('domain');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-6">
@@ -40,13 +21,12 @@ const Success = () => {
           Thank you for your purchase. Your domain acquisition is being processed.
         </p>
 
-        {purchase && (
+        {domainName && (
           <div className="bg-background/50 rounded-2xl p-6 mb-8 text-left">
             <h2 className="font-playfair text-2xl font-bold mb-4">Purchase Details</h2>
             <div className="space-y-2 text-muted-foreground">
-              <p><span className="font-semibold text-foreground">Domain:</span> {purchase.domain_name}</p>
-              <p><span className="font-semibold text-foreground">Price:</span> ${purchase.domain_price.toLocaleString()}</p>
-              <p><span className="font-semibold text-foreground">Status:</span> {purchase.status}</p>
+              <p><span className="font-semibold text-foreground">Domain:</span> {domainName}</p>
+              <p><span className="font-semibold text-foreground">Status:</span> Processing</p>
             </div>
           </div>
         )}
