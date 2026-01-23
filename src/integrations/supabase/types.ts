@@ -48,6 +48,8 @@ export type Database = {
           id: string
           name: string
           price: number
+          reserved_at: string | null
+          reserved_by: string | null
           status: string
           updated_at: string
         }
@@ -57,6 +59,8 @@ export type Database = {
           id?: string
           name: string
           price: number
+          reserved_at?: string | null
+          reserved_by?: string | null
           status?: string
           updated_at?: string
         }
@@ -66,6 +70,8 @@ export type Database = {
           id?: string
           name?: string
           price?: number
+          reserved_at?: string | null
+          reserved_by?: string | null
           status?: string
           updated_at?: string
         }
@@ -118,7 +124,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      expire_domain_reservations: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
