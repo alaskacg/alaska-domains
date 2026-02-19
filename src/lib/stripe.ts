@@ -35,7 +35,7 @@ export async function redirectToCheckout(domainName: string) {
   const product = DOMAIN_PRICES[domainKey];
   if (!product) throw new Error(`No Stripe product found for ${domainName}`);
 
-  const { error } = await stripe.redirectToCheckout({
+  const { error } = await (stripe as any).redirectToCheckout({
     lineItems: [{ price: product.priceId, quantity: 1 }],
     mode: 'payment',
     successUrl: `${window.location.origin}/success?domain=${encodeURIComponent(domainName)}`,
